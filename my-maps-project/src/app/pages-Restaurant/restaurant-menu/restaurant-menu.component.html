@@ -1,0 +1,19 @@
+<!--div class= "menu" *ngFor="let menu of resto.menu">
+  <div *ngFor="let m of menu">
+    {{m}}
+  </div>
+</div-->
+<table class="menu-table ">
+  <thead class="bg-secondary">
+    <tr>
+      <th *ngFor="let menu of resto.menu;let i = index">Menu {{i+1}}</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td *ngFor="let menu of resto.menu"><div class="mon-plat" *ngFor="let m of menu">
+        {{m}}<br/> ***** <br/>
+      </div></td>
+    </tr>
+  </tbody>
+</table>

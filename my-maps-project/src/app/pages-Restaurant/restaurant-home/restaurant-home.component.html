@@ -1,0 +1,31 @@
+<div class="container-fluid ">
+  <div class="row titles">
+    <div class="col-xs-12 col-md-6 offset-xs-0 offset-md-1 resto-home">
+      <div class="row">
+        <div class="col-xs-2">
+          <img src={{imageUrl}} class="my-image" width="200" height="150 " alt="Image"/>
+        </div>
+        <div class="col-xs-10 title">
+          <h1>{{resto.name}}</h1>
+          <h4 ><span *ngFor="let unTag of resto.tag" class="badge badge-secondary tag-badge" >{{unTag}}</span> </h4>
+        </div>
+      </div>
+    </div>
+    <div class="col-xs-12 cols-md-">
+      <osl-restaurant-detail [resto]="resto"></osl-restaurant-detail>
+    </div>
+    <div class="col-xs-12 col-md-1"></div>
+  </div>
+  <div class="row">
+    <div class="col-xs-12 col-md-3 offset-xs-0 offset-md-1">
+      <osl-restaurant-menu [resto]="resto"></osl-restaurant-menu>
+    </div>
+    <div class="col-xs-12 col-md-3">
+      <osl-review [resto_id]="resto.id"></osl-review>
+    </div>
+    <div class="col-xs 12 col-md-4">
+      <osl-restaurant-location [resto]="resto"></osl-restaurant-location>
+    </div>
+    <div class="col-xs-12 col-md-1"></div>
+  </div>
+</div>

@@ -1,0 +1,53 @@
+<div class="container-fluid">
+  <div class="row ">
+    <div class="col-xs-12 col-md-6">
+      <agm-map class="search-agm-map" [latitude]="(initPos.lat)" [longitude]="(initPos.lng)" [zoom]="11">
+      <agm-marker *ngFor="let resto of results"  [latitude]="resto.lat" [longitude]="resto.long">
+        <agm-info-window>
+          <div>{{resto.name}}</div>
+          <div>Rate :{{resto.averageScore}}</div>
+          <a [routerLink]="['/restaurant', resto.id]">+details</a>
+        </agm-info-window>
+      </agm-marker>
+    </agm-map>
+    </div>
+    <div class="col-xs-12 col-md-6">
+      <div class="row"><h2 class="mx-auto">Search the restaurant you need</h2></div>
+      <div class="row form-row mx-auto my-boxes col-xs-12 col-lg-8 offset-lg-2">
+        <div class="form-group col">
+          <input id="input_location" class="form-control" type="text" list="list_cities" placeholder="City" [(ngModel)]="inputLocation">
+          <datalist id="list_cities">
+            <option *ngFor="let city of cities" value="{{city}}">{{city}}</option>
+          </datalist>
+        </div>
+        <div class="form-group col">
+          <input id="input_tag" class="form-control" type="text" list="list_tag" placeholder="Tag" [(ngModel)]="inputTag">
+          <datalist id="list_tag" >
+            <option *ngFor="let unTag of tags" value="{{unTag.cuisine_name}}"></option>
+          </datalist>
+        </div>
+        <button id="button_search" class="btn btn-primary form-control" (click)="getResult()" >Search</button>
+      </div>
+      <hr>
+      <div class="table-wrapper my-boxes" >
+        <table class="table my-table table-hover">
+          <thead>
+          <tr>
+            <th (click)="sortByName(this)">Name</th>
+            <th (click)="sortByCity(this)">City</th>
+            <th (click)="sortByRate(this)">Rating</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr *ngIf="results.length==0"><td colspan="3" id="no-data">No restaurant found</td></tr>
+          <tr *ngFor="let unResto of results" class="my-rows" [routerLink]="['/restaurant', unResto.id]" >
+            <td>{{unResto.name}}</td>
+            <td>{{unResto.city}}</td>
+            <td>{{unResto.averageScore}}</td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

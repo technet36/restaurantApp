@@ -1,0 +1,27 @@
+.search-agm-map {
+    padding: 15px;
+    height: 500px;
+}
+.my-boxes{
+  margin-bottom: 15px;
+}
+th:hover {
+  cursor: pointer;
+}
+.my-table{
+  background-color: rgba(225, 225, 225, 0.6);
+}
+.my-table td tr {
+  border: lightgray 1px solid ;
+  border-collapse: collapse;
+}
+.table-wrapper {
+  max-height: 450px;
+  overflow-y: auto;
+}
+.my-table thead{
+  background-color: lightgray;
+}
+.container-fluid{
+  padding-bottom: 30px;
+}

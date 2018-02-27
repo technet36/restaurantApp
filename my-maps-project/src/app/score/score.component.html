@@ -1,0 +1,7 @@
+<div>
+    <span><b>Score: {{ score }}</b></span>
+    <span *ngFor="let s of starsEmpty"
+          class="glyphicon glyphicon-star myStarClass"
+          [class.glyphicon-star-empty]="s">
+    </span>
+</div>

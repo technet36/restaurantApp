@@ -1,0 +1,33 @@
+span{
+   float:left;
+   padding:12px;
+}
+.titre{
+   font-size:14px;
+   background-color:#CC6666;
+   color:#663333;
+   padding:4px;
+}
+.menu-table{
+  border: solid dimgray 2px;
+  height: 250px;
+}
+.menu-table thead {
+  border-bottom: 1px solid dimgray;
+  margin: auto;
+  text-align: center;
+  padding: 5px;
+}
+.menu-table tbody{
+  background-color: rgba(225, 225, 225, 0.6);
+  padding: 5px;
+}
+.mon-plat{
+  text-align: center;
+}
+.menu-table tbody td:first-child, .menu-table thead th:first-child{
+  border-right:2px solid dimgray;
+}.menu-table th{
+   min-width: 150px;
+ }
+

@@ -1,0 +1,26 @@
+.titles{
+  padding: 40px 15px 15px;
+}
+.resto-home{
+  margin-top: 25px;
+}
+.my-image{
+  border: 4px solid black;
+  border-radius: 19px;
+}
+.page{
+   background-color:#556B2F;
+  border-right:2px solid dimgray;
+ }
+div{
+}
+.title{
+  margin: auto auto auto 5px;
+}
+.titre{
+  float:left;
+  margin-right: 10px;
+}
+.tag-badge{
+  margin-right: 2px;
+}

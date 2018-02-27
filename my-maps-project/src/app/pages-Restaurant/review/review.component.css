@@ -1,0 +1,25 @@
+.all-review{
+  border: solid dimgray 2px;
+  height: 250px;
+  background-color: rgba(225, 225, 225, 0.6);
+}
+.review-submit{
+}
+.review-content{
+  height: 168px;
+  overflow-y: auto;
+}
+.each-review{
+  border-bottom: solid 1px dimgray;
+  padding: 4px;
+}
+.no-review{
+  text-align: center;
+  color: dimgray;
+}
+.review-header{
+  border-bottom: 2px solid dimgray;
+  margin: auto;
+  text-align: center;
+  padding: 5px;
+}
