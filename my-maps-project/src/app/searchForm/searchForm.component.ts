@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {Resto, RestoService} from "../restaurant-service/restaurant-service";
+import {CinemaService, Resto, RestoService} from "../restaurant-service/restaurant-service";
 
 @Component({
     moduleId: module.id,
@@ -21,7 +21,7 @@ export class SearchFormComponent implements OnInit {
     sortDirect:number;
     initPos:Marker;
 
-    constructor(private restoService:RestoService) {
+    constructor(private restoService:RestoService, private cinemaService:CinemaService) {
         this.mesResto = this.restoService.getRestaurants();
         this.results = [];
         this.initPos = {lng:0,lat:0,restoId:0};
@@ -31,6 +31,14 @@ export class SearchFormComponent implements OnInit {
             this.initPos.lng = pos.coords.longitude;
           });
         }
+
+        console.log("calling cinemaService constructor");
+        //let myCinemaService = new CinemaService();
+        cinemaService.getCinemas().subscribe(allCinemas=>{
+          console.log(allCinemas)
+        });
+        cinemaService.getMovies().subscribe();
+        cinemaService.getGenres().subscribe();
 
         this.restoService.getRestos("dublin",135).subscribe(searchedResto=>{
           this.results=searchedResto;

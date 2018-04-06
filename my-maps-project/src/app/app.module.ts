@@ -22,6 +22,8 @@ import {LoggerService} from "./logger-service/logger-service";
 import ReviewComponent from "./pages-Restaurant/review/review.component";
 import {ReviewService} from "./review-service/review-service.service";
 
+import {CinemaService} from "./restaurant-service/restaurant-service";
+
 @NgModule({
   imports: [
     BrowserModule,
@@ -38,7 +40,7 @@ import {ReviewService} from "./review-service/review-service.service";
       { path: 'donate', component: AboutComponent  }
     ])
   ],
-  providers: [RestoService,LoggerService,ReviewService],
+  providers: [RestoService,CinemaService,LoggerService,ReviewService],
   declarations: [
     SearchFormComponent,
     ApplicationComponent,
