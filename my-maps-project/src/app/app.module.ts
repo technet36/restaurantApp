@@ -21,8 +21,7 @@ import PageNotFoundComponent from "./pagenotfound/pagenotfound.component";
 import {LoggerService} from "./logger-service/logger-service";
 import ReviewComponent from "./pages-Restaurant/review/review.component";
 import {ReviewService} from "./review-service/review-service.service";
-
-import {CinemaService} from "./restaurant-service/restaurant-service";
+import {CinemaService} from "./cinema-service/cinema-service";
 
 @NgModule({
   imports: [

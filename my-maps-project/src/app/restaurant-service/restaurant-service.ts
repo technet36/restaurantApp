@@ -18,37 +18,6 @@ export class Resto {
         public openingHours:Array<string>,
         public facilities:string) {}
 }
-export class Cinema {
-  constructor(
-    public id: number,
-    public name: string,
-    public website: string,
-    public lat: number,
-    public lon: number,
-    public address_text: string,
-    public booking_type: string
-  ){}
-}
-
-export class Movie {
-  constructor(
-    public id: number,
-    public name:string,
-    public slug:string,
-    public image_url: string
-  ){}
-}
-export class Showtime {
-  constructor(
-    public cinema_id:number,
-    public movie_id:number,
-    public start_at :string,
-    public language:number,
-    public auditorium: string,
-    public booking_type:string,
-    public is_3d:boolean
-  ){}
-}
 
 @Injectable()
 export class RestoService {
@@ -143,64 +112,6 @@ export class RestoService {
         });
       });
   }
-}
-
-@Injectable()
-export class CinemaService {
-  private headers:HttpHeaders = new HttpHeaders("X-API-Key:JtKDDYcaAhgOd8J8Jxr9TW5V5kk4kaz8");
-
-  constructor(private http:HttpClient){
-    console.log("constructor")
-    //this.headers.append("country","IE");
-  }
-
-  public getCinemas():Observable<number>{
-    console.log("getCinemas");
-    return new Observable<number>((observer)=>{
-      this.http.get("https://api.internationalshowtimes.com/v4/cinemas/?countries=IE",{headers:this.headers}).subscribe(
-        response=>{
-          console.log(response);
-          observer.next(42);
-          observer.complete();
-        },()=>{
-          console.log("error");
-          observer.error([])
-        }
-      )
-    })
-  }
-
-  public getGenres():Observable<number>{
-    console.log("getGenres");
-    return new Observable<number>((observer)=>{
-      this.http.get("https://api.internationalshowtimes.com/v4/genres/?countries=IE",{headers:this.headers}).subscribe(
-        response=>{
-          console.log(response);
-          observer.next(42);
-          observer.complete();
-        },()=>{
-          console.log("error");
-          observer.error([])
-        }
-      )
-    })
-  }
-  public getMovies():Observable<number>{
-    console.log("getMovies");
-    return new Observable<number>((observer)=>{
-      this.http.get("https://api.internationalshowtimes.com/v4/movies/?countries=IE",{headers:this.headers}).subscribe(
-        response=>{
-          console.log(response);
-          observer.next(42);
-          observer.complete();
-        },()=>{
-          console.log("error");
-          observer.error([])
-        }
-      )
-    })
-  }
-
 }
 
 

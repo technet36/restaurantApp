@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
-import {CinemaService, Resto, RestoService} from "../restaurant-service/restaurant-service";
+import { Resto, RestoService} from "../restaurant-service/restaurant-service";
+import {CinemaService} from "../cinema-service/cinema-service";
 
 @Component({
     moduleId: module.id,
@@ -9,9 +10,8 @@ import {CinemaService, Resto, RestoService} from "../restaurant-service/restaura
 
 })
 export class SearchFormComponent implements OnInit {
-  theTag: Tag;
-
-  results: Array<Resto>;
+    theTag: Tag;
+    results: Array<Resto>;
     inputLocation: string;
     inputTag: string;
     mesResto: Array<Resto>;
@@ -39,6 +39,7 @@ export class SearchFormComponent implements OnInit {
         });
         cinemaService.getMovies().subscribe();
         cinemaService.getGenres().subscribe();
+        cinemaService.getShowtimes().subscribe();
 
         this.restoService.getRestos("dublin",135).subscribe(searchedResto=>{
           this.results=searchedResto;
@@ -108,7 +109,7 @@ export class SearchFormComponent implements OnInit {
       that.sortDirect*=-1;
     }
 
-  clickRow(restoId: Number) {
+    clickRow(restoId: Number) {
         //console.log("clicked on resto with id :"+restoId);
     }
 
