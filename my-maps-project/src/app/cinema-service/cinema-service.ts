@@ -19,8 +19,13 @@ export class Movie {
   constructor(
     public id: number,
     public name:string,
-    public slug:string,
-    public image_url: string
+    public synopsis:string,
+    public image_url: string,
+    public tag: number[],
+    public age_limit: string,
+    public release_date: string,
+    public cast: any,
+    public crew:any
   ){}
 }
 
@@ -36,6 +41,7 @@ export class Showtime {
     public is_3d:boolean
   ){}
 }
+
 export class Genres {
   constructor(
     public id:number,
@@ -124,7 +130,25 @@ export class CinemaService {
       )
     })
   }
+/*
+  public getMovieById(id):Observable<Movie>{
 
-
-
+    console.log("getMoviesById");
+    return new Observable<Movie>((observer)=>{
+      this.http.get("https://api.internationalshowtimes.com/v4/movies/"+id+"?countries=IE",{headers:this.headers}).subscribe(
+        response=>{
+          let movieArray = [];
+          response["movies"].forEach(function (oneMovie){
+            movieArray.push(new Movie(oneMovie["id"],oneMovie["title"],oneMovie["slug"],oneMovie["poster_image_thumbnail"]))
+          });
+          observer.next(movieArray);
+          observer.complete();
+        },()=>{
+          console.log("error");
+          observer.error([])
+        }
+      )
+    })
+  }
+*/
 }
