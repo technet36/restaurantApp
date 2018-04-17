@@ -1,6 +1,5 @@
 import {Component,Input} from '@angular/core';
-import {Resto} from '../../restaurant-service/restaurant-service';
-
+import {Cinema} from '../../cinema-service/cinema-service';
 @Component({
     moduleId:     module.id,
     selector:    'osl-restaurant-menu',
@@ -8,5 +7,5 @@ import {Resto} from '../../restaurant-service/restaurant-service';
     styleUrls:  ['restaurant-menu.component.css'],
 })
 export default class RestaurantMenuComponent {
-    @Input() resto: Resto;
+    @Input() cnma: Cinema;
   }

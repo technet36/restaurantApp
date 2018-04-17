@@ -6,12 +6,12 @@
 <table class="menu-table ">
   <thead class="bg-secondary">
     <tr>
-      <th *ngFor="let menu of resto.menu;let i = index">Menu {{i+1}}</th>
+      <th *ngFor="let menu of cnma.menu;let i = index">Menu {{i+1}}</th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <td *ngFor="let menu of resto.menu"><div class="mon-plat" *ngFor="let m of menu">
+      <td *ngFor="let menu of cnma.menu"><div class="mon-plat" *ngFor="let m of menu">
         {{m}}<br/> ***** <br/>
       </div></td>
     </tr>

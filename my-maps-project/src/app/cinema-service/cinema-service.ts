@@ -124,7 +124,27 @@ export class CinemaService {
       )
     })
   }
+  getCinemaById(id: number):Observable<Cinema> {
 
+    return new Observable((monObserver)=>{
+      this.http.get("https://api.internationalshowtimes.com/v4/cinemas/" + id + "?countries=IE" ,{headers:this.headers}).subscribe(
+        Partcin=>{
+          console.log(Partcin);
+          let Fullcin:Cinema= new Cinema(
+            Partcin["cinema"]["id"],
+            Partcin["cinema"]["name"],
+            Partcin["cinema"]["website"],
+            Partcin["cinema"]["location"]["lat"],
+            Partcin["cinema"]["location"]["lon"],
+            Partcin["cinema"]["location"]["address"]["display_text"],
+            Partcin["cinema"]["booking_type"]);
+          monObserver.next(Fullcin);
+          monObserver.complete();
+        },()=>{
+          monObserver.error([]);
+        });
+    });
+  }
 
 
 }

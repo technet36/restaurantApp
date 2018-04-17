@@ -34,7 +34,7 @@ import {CinemaService} from "./cinema-service/cinema-service";
     }),
     RouterModule.forRoot([
       { path: '', component: SearchFormComponent },
-      { path: 'restaurant/:id', component: RestaurantHomeComponent, data: {displayPrice: true}  },
+      { path: 'cinema/:id', component: RestaurantHomeComponent, data: {displayPrice: true}  },
       { path: '**', component: PageNotFoundComponent },
       { path: 'donate', component: AboutComponent  }
     ])
