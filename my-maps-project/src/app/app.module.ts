@@ -22,6 +22,7 @@ import {LoggerService} from "./logger-service/logger-service";
 import ReviewComponent from "./pages-Restaurant/review/review.component";
 import {ReviewService} from "./review-service/review-service.service";
 import {CinemaService} from "./cinema-service/cinema-service";
+import MovieComponent from "./page-Movie/movie.component";
 
 @NgModule({
   imports: [
@@ -35,6 +36,7 @@ import {CinemaService} from "./cinema-service/cinema-service";
     RouterModule.forRoot([
       { path: '', component: SearchFormComponent },
       { path: 'cinema/:id', component: RestaurantHomeComponent, data: {displayPrice: true}  },
+      { path: 'movie/:id', component: MovieComponent, data: {displayPrice: true}  },
       { path: '**', component: PageNotFoundComponent },
       { path: 'donate', component: AboutComponent  }
     ])
@@ -52,7 +54,8 @@ import {CinemaService} from "./cinema-service/cinema-service";
     RestaurantMenuComponent,
     ScoreComponent,
     PageNotFoundComponent,
-    ReviewComponent
+    ReviewComponent,
+    MovieComponent
   ],
   bootstrap: [ ApplicationComponent ]
 })

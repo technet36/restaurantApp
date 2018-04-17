@@ -1,0 +1,70 @@
+<div class="container-fluid ">
+  <div class="row titles">
+    <div class="col-xs-12 col-md-6 offset-xs-0 offset-md-1 resto-home">
+      <div class="row">
+        <div class="col-xs-2">
+          <img src={{imageUrl}} class="my-image" width="200" height="150 " alt="Image"/>
+        </div>
+        <div class="col-xs-10 title">
+          <h1>{{resto.name}}</h1>
+          <h4 ><span *ngFor="let unTag of resto.tag" class="badge badge-secondary tag-badge" >{{unTag}}</span> </h4>
+        </div>
+      </div>
+    </div>
+    <div class="col-xs-12 cols-md-">
+      <div class="all-detail">
+        <h4 class="bg-secondary detail-header">DETAILS</h4>
+        <div class="detail-content">
+          <p>City : {{resto.city}}</p>
+          <p>Address : {{resto.address}}</p>
+          <p>Price : {{resto.averagePrice}} €</p>
+          <p>Opening hours: {{resto.openingHours}}</p>
+          <p>Facility : {{resto.facilities}}</p>
+        </div>
+      </div>
+
+    </div>
+    <div class="col-xs-12 col-md-1"></div>
+  </div>
+  <div class="row">
+    <div class="col-xs-12 col-md-3 offset-xs-0 offset-md-1">
+      <table class="menu-table ">
+        <thead class="bg-secondary">
+        <tr>
+          <th *ngFor="let menu of resto.menu;let i = index">Menu {{i+1}}</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+          <td *ngFor="let menu of resto.menu"><div class="mon-plat" *ngFor="let m of menu">
+            {{m}}<br/> ***** <br/>
+          </div></td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="col-xs-12 col-md-3">
+      <div class="all-review">
+        <h4 class="bg-secondary review-header">REVIEWS</h4>
+        <div class="review-content">
+          <div *ngIf="list_Review.length==0" class="no-review ">
+            <span>No review yet.<br/>Be the first.</span>
+          </div>
+          <div class="each-review" *ngFor="let r of list_Review">
+            {{r.text_review}}
+          </div>
+        </div>
+        <div class="form-inline review-submit">
+          <input class="form-control col" type="text" [(ngModel)]="reviewText" placeholder="Type your review"/>
+          <button class="btn btn-primary col" (click)="getReview()">Submit</button>
+        </div>
+      </div>
+    </div>
+    <div class="col-xs 12 col-md-4">
+      <agm-map class="resto-agm-map" [latitude]="resto.lat" [longitude]="resto.long" [zoom]="13">
+        <agm-marker [latitude]="resto.lat" [longitude]="resto.long"></agm-marker>
+      </agm-map>
+    </div>
+    <div class="col-xs-12 col-md-1"></div>
+  </div>
+</div>

@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import { Resto, RestoService} from "../restaurant-service/restaurant-service";
-import {CinemaService} from "../cinema-service/cinema-service";
+import {Cinema, CinemaService} from "../cinema-service/cinema-service";
 
 @Component({
     moduleId: module.id,
@@ -20,10 +20,12 @@ export class SearchFormComponent implements OnInit {
     markers: Array<Marker>;
     sortDirect:number;
     initPos:Marker;
+    allCinemas: Cinema[];
 
     constructor(private restoService:RestoService, private cinemaService:CinemaService) {
         this.mesResto = this.restoService.getRestaurants();
         this.results = [];
+        this.allCinemas = [];
         this.initPos = {lng:0,lat:0,restoId:0};
         if(window.navigator.geolocation){
           window.navigator.geolocation.getCurrentPosition((pos)=> {
@@ -34,12 +36,19 @@ export class SearchFormComponent implements OnInit {
 
         console.log("calling cinemaService constructor");
         //let myCinemaService = new CinemaService();
-        cinemaService.getCinemas().subscribe(allCinemas=>{
-          console.log(allCinemas)
+        cinemaService.getCinemas().subscribe(response=>{
+          this.allCinemas = response;
+          console.log(response)
         });
-        cinemaService.getMovies().subscribe();
-        cinemaService.getGenres().subscribe();
-        cinemaService.getShowtimes().subscribe();
+        cinemaService.getMovies().subscribe(response=>{
+          console.log(response)
+        });
+        cinemaService.getGenres().subscribe(response=>{
+          console.log(response)
+        });
+        cinemaService.getShowtimes().subscribe(response=>{
+          console.log(response)
+        });
 
         this.restoService.getRestos("dublin",135).subscribe(searchedResto=>{
           this.results=searchedResto;

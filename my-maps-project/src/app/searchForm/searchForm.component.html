@@ -2,11 +2,10 @@
   <div class="row ">
     <div class="col-xs-12 col-md-6">
       <agm-map class="search-agm-map" [latitude]="(initPos.lat)" [longitude]="(initPos.lng)" [zoom]="11">
-      <agm-marker *ngFor="let resto of results"  [latitude]="resto.lat" [longitude]="resto.long">
-        <agm-info-window>
-          <div>{{resto.name}}</div>
-          <div>Rate :{{resto.averageScore}}</div>
-          <a [routerLink]="['/restaurant', resto.id]">+details</a>
+      <agm-marker *ngFor="let oneCinema of allCinemas"  [latitude]="oneCinema.lat" [longitude]="oneCinema.lon">
+          <agm-info-window>
+          <div>{{oneCinema.name}}</div>
+          <a [routerLink]="['/restaurant', oneCinema.id]">+details</a>
         </agm-info-window>
       </agm-marker>
     </agm-map>
@@ -34,16 +33,14 @@
           <thead>
           <tr>
             <th (click)="sortByName(this)">Name</th>
-            <th (click)="sortByCity(this)">City</th>
-            <th (click)="sortByRate(this)">Rating</th>
+            <th (click)="sortByCity(this)">Address</th>
           </tr>
           </thead>
           <tbody>
-          <tr *ngIf="results.length==0"><td colspan="3" id="no-data">No restaurant found</td></tr>
-          <tr *ngFor="let unResto of results" class="my-rows" [routerLink]="['/restaurant', unResto.id]" >
-            <td>{{unResto.name}}</td>
-            <td>{{unResto.city}}</td>
-            <td>{{unResto.averageScore}}</td>
+          <tr *ngIf="allCinemas.length==0"><td colspan="3" id="no-data">No cinema found</td></tr>
+          <tr *ngFor="let oneCinema of allCinemas" class="my-rows" [routerLink]="['/cinema', oneCinema.id]" >
+            <td>{{oneCinema.name}}</td>
+            <td>{{oneCinema.address_text}}</td>
           </tr>
           </tbody>
         </table>
