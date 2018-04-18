@@ -4,16 +4,14 @@ import {Observable} from "rxjs/Observable";
 
 
 export interface Review{
-  id:number;
-  resto_id:number;
+  id_cinema:number;
+  id_movie:number;
   text_review:string;
 }
 
 
 @Injectable()
 export class ReviewService {
-
-
   private mesReview:Array<Review>;
   private apiBase:string ="http://localhost/rwa_project/review_handler.php";
 
@@ -21,15 +19,27 @@ export class ReviewService {
     this.mesReview=[];
   }
 
-
-  public getReviews(restoId:number):Observable<Review[]>{
-    let urlString = this.apiBase+"?action=1&resto_id="+restoId;
+  public getReviewsByMovie(movieId:number):Observable<Review[]>{
+    let urlString = this.apiBase+"?action=3&id_movie="+movieId;
     return new Observable((observer)=>{
       this.http.get<Review[]>(urlString).subscribe(
         value=>{
           observer.next(value);
         },()=>{
-          observer.error([{id:0,resto_id:0,text_review:"No review"}]);
+          observer.error([{id_cinema:0,id_movie:0,text_review:"No review"}]);
+        }
+      );
+    });
+  }
+
+  public getReviewsByCinema(cinemaId:number):Observable<Review[]>{
+    let urlString = this.apiBase+"?action=1&id_movie="+cinemaId;
+    return new Observable((observer)=>{
+      this.http.get<Review[]>(urlString).subscribe(
+        value=>{
+          observer.next(value);
+        },()=>{
+          observer.error([{id_cinema:0,id_movie:0,text_review:"No review"}]);
         }
       );
     });
