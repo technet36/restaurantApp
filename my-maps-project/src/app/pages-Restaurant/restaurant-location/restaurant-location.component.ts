@@ -1,5 +1,5 @@
 import {Component,Input} from '@angular/core';
-import {Resto} from '../../restaurant-service/restaurant-service';
+import {Cinema} from '../../cinema-service/cinema-service';
 
 @Component({
     moduleId:     module.id,
@@ -8,5 +8,5 @@ import {Resto} from '../../restaurant-service/restaurant-service';
     styleUrls:   ['restaurant-location.component.css']
 })
 export default class RestaurantLocationComponent {
-      @Input() resto: Resto;
+      @Input() cnma: Cinema;
 }

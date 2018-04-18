@@ -1,17 +1,17 @@
 import {Component, OnInit, OnDestroy} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
-import {Resto,RestoService} from '../../restaurant-service/restaurant-service';
+import {Cinema,CinemaService} from '../../cinema-service/cinema-service';
 
 @Component({
     moduleId: module.id,
     selector:    'osl-restaurant-home',
     templateUrl: 'restaurant-home.component.html',
     styleUrls:  ['restaurant-home.component.css'],
-    providers: [RestoService]
+    providers: [CinemaService]
 })
 export default class RestaurantHomeComponent implements OnInit, OnDestroy {
 
-    resto: Resto;
+    cnma: Cinema;
     displayPrice: boolean;
     imageUrl: string;
     tagsString: string = "";
@@ -19,16 +19,16 @@ export default class RestaurantHomeComponent implements OnInit, OnDestroy {
     subscriberParams: any;
     subscriberData: any;
 
-    constructor(private restoService: RestoService, private route: ActivatedRoute) {}
+    constructor(private CnmaService: CinemaService, private route: ActivatedRoute) {}
 
     ngOnInit() {
-        this.resto = new Resto(0,"",53.348,-6.294,"","",[],[],"",0.0,0.0,[],"");
+        this.cnma = new Cinema(0,"","",53.348,-6.294,"","");
         this.subscriberParams = this.route.params.subscribe(params => {
             let id: number = +params['id'];   // (+) converts string 'id' to a number
-            this.restoService.getRestosById(id).subscribe(leResto=>{
-              console.log("LeResto");
-              console.log(leResto);
-              this.resto=leResto;
+            this.CnmaService.getCinemaById(id).subscribe(Fullcin=>{
+              console.log("Fullcin");
+              console.log(Fullcin);
+              this.cnma=Fullcin;
             });
             this.imageUrl = 'assets/' + id%6 + '.jpg';
         });
