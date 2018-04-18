@@ -1,6 +1,6 @@
 import {Component, OnInit, OnDestroy} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
-import {Cinema,CinemaService} from '../../cinema-service/cinema-service';
+import {Cinema,CinemaService, Showtime} from '../../cinema-service/cinema-service';
 
 @Component({
     moduleId: module.id,
@@ -12,6 +12,7 @@ import {Cinema,CinemaService} from '../../cinema-service/cinema-service';
 export default class RestaurantHomeComponent implements OnInit, OnDestroy {
 
     cnma: Cinema;
+    show: Showtime;
     displayPrice: boolean;
     imageUrl: string;
     tagsString: string = "";
@@ -22,7 +23,7 @@ export default class RestaurantHomeComponent implements OnInit, OnDestroy {
     constructor(private CnmaService: CinemaService, private route: ActivatedRoute) {}
 
     ngOnInit() {
-        this.cnma = new Cinema(0,"","",53.348,-6.294,"","");
+        this.cnma = new Cinema(0,"","",53.348,-6.294,"","", 0);
         this.subscriberParams = this.route.params.subscribe(params => {
             let id: number = +params['id'];   // (+) converts string 'id' to a number
             this.CnmaService.getCinemaById(id).subscribe(Fullcin=>{

@@ -11,7 +11,8 @@ export class Cinema {
     public lat: number,
     public lon: number,
     public address_text: string,
-    public booking_type: string
+    public booking_type: string,
+    public telephone: number
   ){}
 }
 
@@ -29,11 +30,11 @@ export class Showtime {
     public id:number,
     public cinema_id:number,
     public movie_id:number,
-    public start_at :string,
-    public language:number,
-    public auditorium: string,
-    public booking_type:string,
-    public is_3d:boolean
+    public start_at:string,
+    public is_3d:boolean,
+    public language:string,
+    public auditorium:string,
+    public booking_type:string
   ){}
 }
 export class Genres {
@@ -59,7 +60,7 @@ export class CinemaService {
         response=>{
           let cinemasArray = [];
           response["cinemas"].forEach(function (oneCinema) {
-            cinemasArray.push(new Cinema(oneCinema["id"],oneCinema["name"],oneCinema["website"],oneCinema["location"]["lat"],oneCinema["location"]["lon"],oneCinema["location"]["address"]["display_text"],oneCinema["booking_type"],))
+            cinemasArray.push(new Cinema(oneCinema["id"],oneCinema["name"],oneCinema["website"],oneCinema["location"]["lat"],oneCinema["location"]["lon"],oneCinema["location"]["address"]["display_text"],oneCinema["booking_type"], oneCinema["telephone"],))
           });
           observer.next(cinemasArray);
           observer.complete();
@@ -137,7 +138,8 @@ export class CinemaService {
             Partcin["cinema"]["location"]["lat"],
             Partcin["cinema"]["location"]["lon"],
             Partcin["cinema"]["location"]["address"]["display_text"],
-            Partcin["cinema"]["booking_type"]);
+            Partcin["cinema"]["booking_type"],
+            Partcin["cinema"]["telephone"]);
           monObserver.next(Fullcin);
           monObserver.complete();
         },()=>{
@@ -145,6 +147,49 @@ export class CinemaService {
         });
     });
   }
+
+  /* getShowtimeById(id: number):Observable<Showtime> {
+
+     return new Observable((monObserver)=>{
+       this.http.get("https://api.internationalshowtimes.com/v4/showtimes?cinema_id=" + id,{headers:this.headers}).subscribe(
+         Partshow=>{
+           console.log(Partshow);
+           let Fullshow:Showtime = new Showtime(
+             Partshow["showtimes"]["id"],
+             Partshow["showtimes"]["cinema_id"],
+             Partshow["showtimes"]["movie_id"],
+             Partshow["showtimes"]["start_at"],
+             Partshow["showtimes"]["is_3d"],
+             Partshow["showtimes"]["language"],
+             Partshow["showtimes"]["auditorium"],
+             Partshow["showtimes"]["booking_type"]);
+           monObserver.next(Fullshow);
+           monObserver.complete();
+         },()=>{
+           monObserver.error([]);
+         });
+     });
+   } */
+  public getShowtimeById(id: number):Observable<Showtime[]>{
+    console.log("getShowtimes()");
+    return new Observable<Showtime[]>((observer)=>{
+      this.http.get("https://api.internationalshowtimes.com/v4/showtimes?cinema_id=" + id,{headers:this.headers}).subscribe(
+        response=>{
+          let showtimesArray = [];
+          response["showtimes"].forEach(function (oneShowtime) {
+            showtimesArray.push(new Showtime(oneShowtime["id"],oneShowtime["cinema_id"],oneShowtime["movie_id"],
+              oneShowtime["start_at"],oneShowtime["language"],oneShowtime["auditorium"],oneShowtime["booking_type"],oneShowtime["is_3d"]))
+          });
+          observer.next(showtimesArray);
+          observer.complete();
+        },()=>{
+          console.log("error getShowtimes()");
+          observer.error([])
+        }
+      )
+    })
+  }
+
 
 
 }
