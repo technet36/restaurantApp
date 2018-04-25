@@ -17,50 +17,9 @@ export default class MovieComponent implements OnInit {
   public listReview: Array<Review>;
   public movieId:number;
   public currentReview:Review = {id_movie:0,id_cinema:0,text_review:""};
-  public showtimeList:Array<Showtime> = [{
-        "id": "260_16583_201602011415",
-        "start_at": "2018-04-23T16:20:00+01:00",
-        "language": "de",
-        "booking_type": "external",
-        "auditorium": null,
-        "is_3d": null,
-        "movie_id": 16977,
-        "cinema_id": 260
-      },{
-        "id": "260_16583_201602011415",
-        "start_at": "2018-04-23T16:50:00+01:00",
-        "language": "de",
-        "booking_type": "external",
-        "auditorium": null,
-        "is_3d": null,
-        "movie_id": 16977,
-        "cinema_id": 260
-      },
-      {
-        "id": "260_12322_201602011600",
-        "start_at": "2018-04-27T20:20:00+01:00",
-        "language": "de",
-        "booking_type": "external",
-        "auditorium": null,
-        "is_3d": null,
-        "movie_id": 12322,
-        "cinema_id": 260
-      },
-      {
-        "id": "260_16977_201602011620",
-        "start_at": "2018-04-25T09:20:00+01:00",
-        "language": "de",
-        "booking_type": "external",
-        "auditorium": null,
-        "is_3d": null,
-        "movie_id": 16977,
-        "cinema_id": 260
-      }
-      ];
   public timetableArray ;
   public currentDayShowtimes;
   public activeDay=0;
-  public mapMarkerArray;
   public userPosition = {"latitude":53.348, "longitude":-6.294};
   public cinemaList:Array<Cinema>;
   private zoomMapLvl = 10;
@@ -124,20 +83,21 @@ export default class MovieComponent implements OnInit {
                 oneShowtime.start_at = myDate.getHours()+":"+(myDate.getMinutes()==0?"00":myDate.getMinutes());
                 let timeStampOffset = myDate.getTime()- today.getTime();
                 let dayOffset = Math.floor(timeStampOffset/(1000*60*60*24));
-                oneShowtime["offset"] = (timeStampOffset / (1000 * 60 * 60 * 24) * 100 % 100)+"%";
-
+              oneShowtime["offset"] = (timeStampOffset / (1000 * 60 * 60 * 24) * 100 % 100)+"%";
+              if(7>dayOffset && -1<dayOffset){
                 this.timetableArray[dayOffset].forEach(oneDay=>{
-                    if(oneDay["cinema_id"]==oneShowtime.cinema_id){
-                        oneDay["showtimes"].push(oneShowtime);
-                        oneDay["showtimes"].sort(MovieComponent.compareShowtime);
-                        temp = true;
-                    }
+                  if(oneDay["cinema_id"]==oneShowtime.cinema_id){
+                    oneDay["showtimes"].push(oneShowtime);
+                    oneDay["showtimes"].sort(MovieComponent.compareShowtime);
+                    temp = true;
+                  }
                 });
                 if (false==temp){
-                    myCinema = dataCinema.find(oneCinema=>{return oneCinema.id==oneShowtime.cinema_id;});
-                    this.timetableArray[dayOffset].push({"cinema_id":oneShowtime.cinema_id,"name":myCinema.name,"address_text":myCinema.address_text,"lat":myCinema.lat,"lon":myCinema.lon,"showtimes":[oneShowtime]});
+                  myCinema = dataCinema.find(oneCinema=>{return oneCinema.id==oneShowtime.cinema_id;});
+                  this.timetableArray[dayOffset].push({"cinema_id":oneShowtime.cinema_id,"name":myCinema.name,"address_text":myCinema.address_text,"lat":myCinema.lat,"lon":myCinema.lon,"showtimes":[oneShowtime]});
                 }
-                temp=false;
+              }
+              temp=false;
             });
             this.updateShowtimeDay(0);
         });

@@ -176,7 +176,6 @@ export class CinemaService {
     return new Observable<Movie>((observer)=>{
       this.http.get("https://api.internationalshowtimes.com/v4/movies/"+id+"?countries=IE&lang=en",{headers:this.headers}).subscribe(
         response=>{
-          console.log(response);
           let myMovie = new Movie(
             response["movie"]["id"],
             response["movie"]["title"],
@@ -184,7 +183,7 @@ export class CinemaService {
             response["movie"]["poster_image_thumbnail"],
             response["movie"]["genres"],
             response["movie"]["age_limits"]['IE'],
-            response["movie"]["release_dates"]["IE"][0]["date"],
+            response["movie"]["release_dates"]["IE"]?response["movie"]["release_dates"]["IE"][0]["date"]:"unknown",
             response["movie"]["cast"],
             response["movie"]["crew"],
             );
@@ -253,8 +252,8 @@ export class CinemaService {
         });
     });
   }
+
   public getShowtimeById(id: number):Observable<Showtime[]>{
-        console.log("getShowtimes()");
        return new Observable<Showtime[]>((observer)=>{
               this.http.get("https://api.internationalshowtimes.com/v4/showtimes?cinema_id=" + id,{headers:this.headers}).subscribe(
                   response=>{
