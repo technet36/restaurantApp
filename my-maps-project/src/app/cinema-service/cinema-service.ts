@@ -253,4 +253,23 @@ export class CinemaService {
         });
     });
   }
+  public getShowtimeById(id: number):Observable<Showtime[]>{
+        console.log("getShowtimes()");
+       return new Observable<Showtime[]>((observer)=>{
+              this.http.get("https://api.internationalshowtimes.com/v4/showtimes?cinema_id=" + id,{headers:this.headers}).subscribe(
+                  response=>{
+                    let showtimesArray = [];
+                    response["showtimes"].forEach(function (oneShowtime) {
+                        showtimesArray.push(new Showtime(oneShowtime["id"],oneShowtime["cinema_id"],oneShowtime["movie_id"],
+                            oneShowtime["start_at"],oneShowtime["language"],oneShowtime["auditorium"],oneShowtime["booking_type"],oneShowtime["is_3d"]))
+                      });
+                    observer.next(showtimesArray);
+                    observer.complete();
+                  },()=>{
+                    console.log("error getShowtimes()");
+                    observer.error([])
+                  }
+              )
+            })
+       }
 }

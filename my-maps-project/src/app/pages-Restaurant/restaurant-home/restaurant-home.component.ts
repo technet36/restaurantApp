@@ -1,6 +1,6 @@
 import {Component, OnInit, OnDestroy} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
-import {Cinema,CinemaService} from '../../cinema-service/cinema-service';
+import {Cinema,CinemaService, Showtime} from '../../cinema-service/cinema-service';
 
 @Component({
     moduleId: module.id,
@@ -12,6 +12,7 @@ import {Cinema,CinemaService} from '../../cinema-service/cinema-service';
 export default class RestaurantHomeComponent implements OnInit, OnDestroy {
 
     cnma: Cinema;
+    show: Showtime;
     displayPrice: boolean;
     imageUrl: string;
     tagsString: string = "";

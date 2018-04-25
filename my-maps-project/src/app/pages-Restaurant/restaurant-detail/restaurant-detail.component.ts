@@ -1,5 +1,5 @@
 import {Component,Input} from '@angular/core';
-import {Cinema} from '../../cinema-service/cinema-service';
+import {Cinema, Showtime} from '../../cinema-service/cinema-service';
 
 @Component({
     moduleId:     module.id,
@@ -9,4 +9,5 @@ import {Cinema} from '../../cinema-service/cinema-service';
 })
 export default class RestaurantDetailComponent {
   @Input() cnma: Cinema;
+  @Input() show: Showtime;
 }
