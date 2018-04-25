@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
-import { Resto, RestoService} from "../restaurant-service/restaurant-service";
-import {Cinema, CinemaService} from "../cinema-service/cinema-service";
+import {Cinema, CinemaService, Genres, Movie} from "../cinema-service/cinema-service";
+import {isNumber} from "util";
 
 @Component({
     moduleId: module.id,
@@ -10,23 +10,20 @@ import {Cinema, CinemaService} from "../cinema-service/cinema-service";
 
 })
 export class SearchFormComponent implements OnInit {
-    theTag: Tag;
-    results: Array<Resto>;
-    inputLocation: string;
-    inputTag: string;
-    mesResto: Array<Resto>;
-    tags:Array<Tag>;
-    cities: Array<string>;
-    markers: Array<Marker>;
     sortDirect:number;
-    initPos:Marker;
+    initPos;
     allCinemas: Cinema[];
+    allMovies: Movie[];
+    displayedMovies: Movie[];
+    genreList:Genres[];
+    inputMovie: string;
+    inputGenre;
 
-    constructor(private restoService:RestoService, private cinemaService:CinemaService) {
-        this.mesResto = this.restoService.getRestaurants();
-        this.results = [];
+    constructor( private cinemaService:CinemaService) {
         this.allCinemas = [];
-        this.initPos = {lng:0,lat:0,restoId:0};
+        this.allMovies = [];
+        this.displayedMovies=[];
+        this.initPos = {lng:0,lat:0};
         if(window.navigator.geolocation){
           window.navigator.geolocation.getCurrentPosition((pos)=> {
             this.initPos.lat = pos.coords.latitude;
@@ -34,103 +31,33 @@ export class SearchFormComponent implements OnInit {
           });
         }
 
-        console.log("calling cinemaService constructor");
-        //let myCinemaService = new CinemaService();
         cinemaService.getCinemas().subscribe(response=>{
           this.allCinemas = response;
-          console.log(response)
         });
         cinemaService.getMovies().subscribe(response=>{
-          console.log(response)
+          this.allMovies=response;
+          this.displayedMovies = response;
         });
         cinemaService.getGenres().subscribe(response=>{
-          console.log(response)
-        });
-        cinemaService.getShowtimes().subscribe(response=>{
-          console.log(response)
+          this.genreList = response;
         });
 
-        this.restoService.getRestos("dublin",135).subscribe(searchedResto=>{
-          this.results=searchedResto;
-        });
-        this.theTag = {cuisine_id:135,cuisine_name:"Irish"};
         this.sortDirect=1;
-        this.inputLocation = "";
-        this.inputTag= "";
-        this.cities = [];
-        this.tags = [];
-        this.restoService.getAllTags(91).subscribe(data=>{
-            this.tags = data['cuisines'].map(function (eachCuisine) {
-              return eachCuisine['cuisine'];
-            });
-          });
-        //this.results = this.mesResto;
-        this.mesResto.forEach(function (unResto) {
-            if (!this.cities.includes(unResto.city)) this.cities.push(unResto.city);
-        },this);
-        //console.log(this.mesResto);
+        this.inputMovie = "";
     }
 
     ngOnInit(): void {
         //TableComponent.
     }
 
-    getResult() {
-        let isSearch:boolean = false;
-        this.results = [];
-        this.markers = [];
-        this.theTag = this.tags.find(tag=>{
-          return tag.cuisine_name===this.inputTag;
-        });
+  getResult() {
+    let request_query;
+    if (null==this.inputGenre) this.inputGenre = "no";
+    request_query = this.inputMovie != "" ? this.inputMovie : this.inputGenre;
 
-        if (typeof (this.theTag) === "undefined"){
-          this.theTag = {cuisine_id:0,cuisine_name:"none"};
-        }
+    this.cinemaService.getMoviesByGenreId(request_query).subscribe(response=>{
+      this.displayedMovies = response;
 
-      this.restoService.getRestos(this.inputLocation,this.theTag.cuisine_id).subscribe(searchedResto=>{
-        this.results=searchedResto;
-        if (searchedResto.length ){
-          this.initPos.lat = searchedResto[0].lat;
-          this.initPos.lng = searchedResto[0].long;
-        }
-      });
-
-    }
-
-    sortByName(that){
-      that.results.sort(function (a, b) {
-        return that.sortDirect*a.name.localeCompare(b.name);
-      });
-      that.sortDirect*=-1;
-    }
-
-    sortByCity(that){
-      that.results.sort(function (a, b) {
-        return that.sortDirect*a.city.localeCompare(b.city);
-      });
-      that.sortDirect*=-1;
-    }
-
-    sortByRate(that){
-      that.results.sort(function (a, b) {
-        return that.sortDirect*(a.averageScore-b.averageScore);
-      });
-      that.sortDirect*=-1;
-    }
-
-    clickRow(restoId: Number) {
-        //console.log("clicked on resto with id :"+restoId);
-    }
-
-}
-// just an interface for type safety.
-interface Marker {
-  lat: number;
-  lng: number;
-  restoId:number;
-  label?: string;
-}
-interface Tag {
-  cuisine_id:number;
-  cuisine_name:string;
+    });
+  }
 }

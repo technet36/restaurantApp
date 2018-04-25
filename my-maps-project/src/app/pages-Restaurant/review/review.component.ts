@@ -14,7 +14,7 @@ export default class ReviewComponent implements OnInit{
       console.log("callback leResto");
       console.log(leResto);
       this.restoId = leResto;
-      this.reviewService.getReviews(leResto).subscribe(data=>{
+      this.reviewService.getReviewsByCinema(leResto).subscribe(data=>{
         this.list_Review = data;
       });
     }
@@ -22,6 +22,7 @@ export default class ReviewComponent implements OnInit{
     reviewText : string; // review input in the HTML
     list_Review: Array<Review> ;
     number_reviews: number = 0;
+
     constructor(private reviewService:ReviewService) {
       this.list_Review=[];
       this.number_reviews = 0;
@@ -33,9 +34,9 @@ export default class ReviewComponent implements OnInit{
     getReview() : void {
       if(this.reviewText !== ""){
         console.log(this.restoId);
-        let newReview:Review = {id:0,resto_id:this.restoId,text_review:this.reviewText};
+        let newReview:Review = {id_movie:0,id_cinema:this.restoId,text_review:this.reviewText};
         this.list_Review.push( newReview );
-        this.reviewService.pushReview(newReview.resto_id,newReview.text_review).subscribe((data)=>{
+        this.reviewService.pushReview(newReview.id_cinema,0,newReview.text_review).subscribe((data)=>{
         }
       );
         //init empty the input

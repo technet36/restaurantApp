@@ -62,7 +62,99 @@ span{
 .movie-showtimes{
   border: solid dimgray 2px;
   height: 250px;
+  overflow: auto;
 }
 .movie-agm-map {
   height: 300px;
+}
+.all-detail{
+  max-width: 600px;
+}
+table, th, td, tr{
+  border: 1px solid black;
+}
+th:hover{
+  cursor: pointer;
+  background-color: lightgray;
+}
+#empty_cell{
+  width: 20%;
+}
+.active_tab{
+  background-color: grey;
+}
+.no_active_tab{
+  background-color: transparent;
+}
+td{
+  position: relative;
+  word-wrap: normal;
+}
+.tr_body:hover {
+  background-color: #8c8c8c;
+}
+.time:hover{
+  background-color: darkred}
+.time{
+  position: absolute;
+  width: 15px;
+  height: 100%;
+  background-color: black;
+  border-left: whitesmoke 1px solid;
+  border-right: whitesmoke 1px solid;
+  top: 0;
+  margin: 0;
+  padding: 0;
+}
+.hours_bar{
+  position: relative;
+  padding: 0;
+}
+.hours_slot{
+  padding: 0;
+  border: 1px solid black;
+  width: 8.333%;
+}
+.time .tooltiptext {
+  visibility: hidden;
+  background-color: #555;
+  color: #fff;
+  padding: 5px 0;
+  border-radius: 6px;
+  font-size: 80%;
+  width: 150px;
+
+  /* Position the tooltip text */
+  position: absolute;
+  z-index: 1;
+  bottom: 125%;
+  left: 50%;
+  margin-left: -75px;
+
+  /* Fade in tooltip */
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+/* Tooltip arrow */
+.time .tooltiptext::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  margin-left: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: #555 transparent transparent transparent;
+}
+
+/* Show the tooltip text when you mouse over the tooltip container */
+.time:hover .tooltiptext {
+  visibility: visible;
+  opacity: 1;
+}
+.tooltip_row{
+  display: block;
+  padding: 3px;
+  margin: 0;
 }

@@ -1,46 +1,44 @@
 <div class="container-fluid">
   <div class="row ">
     <div class="col-xs-12 col-md-6">
-      <agm-map class="search-agm-map" [latitude]="(initPos.lat)" [longitude]="(initPos.lng)" [zoom]="11">
-      <agm-marker *ngFor="let oneCinema of allCinemas"  [latitude]="oneCinema.lat" [longitude]="oneCinema.lon">
-          <agm-info-window>
-          <div>{{oneCinema.name}}</div>
-          <a [routerLink]="['/restaurant', oneCinema.id]">+details</a>
-        </agm-info-window>
-      </agm-marker>
-    </agm-map>
+      <div class="row"><h2 class="mx-auto">Pick the cinema you want</h2></div>
+      <div class="row ">
+        <agm-map class="search-agm-map" [latitude]="(initPos.lat)" [longitude]="(initPos.lng)" [zoom]="11">
+          <agm-marker *ngFor="let oneCinema of allCinemas"  [latitude]="oneCinema.lat" [longitude]="oneCinema.lon">
+            <agm-info-window>
+              <div>{{oneCinema.name}}</div>
+              <a [routerLink]="['/restaurant', oneCinema.id]">+details</a>
+            </agm-info-window>
+          </agm-marker>
+        </agm-map>
+      </div>
     </div>
     <div class="col-xs-12 col-md-6">
-      <div class="row"><h2 class="mx-auto">Search the restaurant you need</h2></div>
+      <div class="row"><h2 class="mx-auto">Search the movie you need</h2></div>
       <div class="row form-row mx-auto my-boxes col-xs-12 col-lg-8 offset-lg-2">
         <div class="form-group col">
-          <input id="input_location" class="form-control" type="text" list="list_cities" placeholder="City" [(ngModel)]="inputLocation">
-          <datalist id="list_cities">
-            <option *ngFor="let city of cities" value="{{city}}">{{city}}</option>
+          <label for="input_location">Movie title:</label>
+          <input id="input_location" class="form-control" type="text" list="list_movies" placeholder="ex: avengers" [(ngModel)]="inputMovie">
+          <datalist id="list_movies">
+            <option ></option>
           </datalist>
         </div>
         <div class="form-group col">
-          <input id="input_tag" class="form-control" type="text" list="list_tag" placeholder="Tag" [(ngModel)]="inputTag">
-          <datalist id="list_tag" >
-            <option *ngFor="let unTag of tags" value="{{unTag.cuisine_name}}"></option>
-          </datalist>
+          <label for="input_tag">Genre :</label>
+          <select id="input_tag" class="form-control" [(ngModel)]="inputGenre">
+            <option value="no" selected >Any</option>
+            <option *ngFor="let oneGenre of genreList" value="{{oneGenre.id}}" >{{oneGenre.name}}</option>
+          </select>
         </div>
         <button id="button_search" class="btn btn-primary form-control" (click)="getResult()" >Search</button>
       </div>
       <hr>
       <div class="table-wrapper my-boxes" >
         <table class="table my-table table-hover">
-          <thead>
-          <tr>
-            <th (click)="sortByName(this)">Name</th>
-            <th (click)="sortByCity(this)">Address</th>
-          </tr>
-          </thead>
           <tbody>
-          <tr *ngIf="allCinemas.length==0"><td colspan="3" id="no-data">No cinema found</td></tr>
-          <tr *ngFor="let oneCinema of allCinemas" class="my-rows" [routerLink]="['/cinema', oneCinema.id]" >
-            <td>{{oneCinema.name}}</td>
-            <td>{{oneCinema.address_text}}</td>
+          <tr *ngIf="displayedMovies.length==0"><td colspan="3" id="no-data">No movie found</td></tr>
+          <tr *ngFor="let oneMovie of displayedMovies" class="my-rows" [routerLink]="['/movie', oneMovie.id]" >
+            <td>{{oneMovie.name}}</td>
           </tr>
           </tbody>
         </table>

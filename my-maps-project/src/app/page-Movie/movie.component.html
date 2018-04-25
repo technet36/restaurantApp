@@ -3,7 +3,7 @@
     <div class="col-xs-12 col-md-6 offset-xs-0 offset-md-1 movie-presentation">
       <div class="row">
         <div class="col-xs-2">
-          <img src={{imageUrl}} class="my-image" width="200" height="150 " alt="Image"/>
+          <img src={{imageUrl}} class="my-image" alt="Image"/>
         </div>
         <div class="col-xs-10 title">
           <h1>{{theMovie.name}}</h1>
@@ -24,32 +24,84 @@
     </div>
     <div class="col-xs-12 col-md-1"></div>
   </div>
-  <div class="row">
-    <div class="col-xs-12 col-md-3 offset-xs-0 offset-md-1">
-      <table class="movie-showtimes ">
-        <h2>List of the showtimes</h2>
-      </table>
-    </div>
-    <div class="col-xs-12 col-md-3">
+  <div class="row ">
+    <table class="col-xs-12 col-md-10 offset-xs-0 offset-md-1">
+      <tr>
+        <th id="empty_cell"></th>
+        <th [class]="(activeDay==0)?'active_tab':'no_active_tab'" (click)="updateShowtimeDay(0)">Today</th>
+        <th [class]="(activeDay==1)?'active_tab':'no_active_tab'" (click)="updateShowtimeDay(1)">D+1</th>
+        <th [class]="(activeDay==2)?'active_tab':'no_active_tab'" (click)="updateShowtimeDay(2)">D+2</th>
+        <th [class]="(activeDay==3)?'active_tab':'no_active_tab'" (click)="updateShowtimeDay(3)">D+3</th>
+        <th [class]="(activeDay==4)?'active_tab':'no_active_tab'" (click)="updateShowtimeDay(4)">D+4</th>
+        <th [class]="(activeDay==5)?'active_tab':'no_active_tab'" (click)="updateShowtimeDay(5)">D+5</th>
+        <th [class]="(activeDay==6)?'active_tab':'no_active_tab'" (click)="updateShowtimeDay(6)">D+6</th>
+      </tr>
+      <tr>
+        <td></td>
+        <td class="hours_bar" colspan="7">
+          <span class="hours_slot">00:00</span>
+          <span class="hours_slot">02:00</span>
+          <span class="hours_slot">04:00</span>
+          <span class="hours_slot">06:00</span>
+          <span class="hours_slot">08:00</span>
+          <span class="hours_slot">10:00</span>
+          <span class="hours_slot">12:00</span>
+          <span class="hours_slot">14:00</span>
+          <span class="hours_slot">16:00</span>
+          <span class="hours_slot">18:00</span>
+          <span class="hours_slot">20:00</span>
+          <span class="hours_slot">22:00</span>
+        </td>
+      </tr>
+      <tr class="tr_body" *ngFor="let oneCinema of currentDayShowtimes">
+        <td>
+          <a href="cinema/{{oneCinema.cinema_id}}">{{oneCinema.name}}</a>
+        </td>
+        <td colspan="7" (click)="centerMap( oneCinema.lat,oneCinema.lon)" >
+          <span class="time" *ngFor="let oneTime of oneCinema.showtimes" [style.left]="oneTime.offset">
+            <span class="tooltiptext">
+              <span class="tooltip_row">Start at: {{oneTime.start_at}}</span><br/>
+              <span class="tooltip_row">Booking: {{oneTime.booking_type}}</span><br/>
+              <span class="tooltip_row">{{oneTime.auditorium}} {{oneTime.is_3d?"(3D)":""}}</span>
+            </span>
+          </span>
+        </td>
+      </tr>
+      <tr *ngIf="currentDayShowtimes==0">
+        <td colspan="8">
+          No showtime for this day
+        </td>
+      </tr>
+    </table>
+    <div class="col-xs-12 col-md-1"></div>
+  </div>
+  <div class="row titles">
+    <div class="col-xs-12 col-md-5 offset-md-1">
       <div class="all-review">
         <h4 class="bg-secondary review-header">REVIEWS</h4>
         <div class="review-content">
-          <div *ngIf="true" class="no-review ">
+          <div *ngIf="listReview.length==0" class="no-review ">
             <span>No review yet.<br/>Be the first.</span>
           </div>
-          <div class="each-review" >
-
+          <div class="each-review" *ngFor="let oneReview of listReview" >
+            <p>{{oneReview.text_review}}</p>
           </div>
         </div>
         <div class="form-inline review-submit">
-          <input class="form-control col" type="text" [(ngModel)]="reviewText" placeholder="Type your review"/>
-          <button class="btn btn-primary col" (click)="getReview()">Submit</button>
+          <input class="form-control col" type="text" [(ngModel)]="currentReview.text_review" placeholder="Type your review"/>
+          <button class="btn btn-primary col" (click)="pushReview()">Submit</button>
         </div>
       </div>
     </div>
-    <div class="col-xs 12 col-md-4">
-      <agm-map class="movie-agm-map" [latitude]="53.348" [longitude]="-6.294" [zoom]="13">
-        <agm-marker [latitude]="53.348" [longitude]="-6.294"></agm-marker>
+    <div class="col-xs 12 col-md-5">
+      <agm-map class="movie-agm-map" [latitude]=userPosition.latitude [longitude]=userPosition.longitude [zoom]=zoomMapLvl>
+        <agm-marker *ngFor="let oneCinema of currentDayShowtimes" [latitude]="oneCinema.lat" [longitude]="oneCinema.lon">
+          <agm-info-window>
+              <b>{{oneCinema.name}}</b>
+              <p>Address:<br/>{{oneCinema.address_text}}</p>
+              <a href="cinema/{{oneCinema.cinema_id}}"> + details</a>
+          </agm-info-window>
+        </agm-marker>
       </agm-map>
     </div>
     <div class="col-xs-12 col-md-1"></div>

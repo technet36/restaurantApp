@@ -45,15 +45,14 @@ export class ReviewService {
     });
   }
 
-  public pushReview(restoId:number,reviewContent:string):Observable<Review[]>{
-    console.log("push service "+restoId);
-    let urlString = this.apiBase+"?action=2&resto_id="+restoId+"&content="+reviewContent;
+  public pushReview(cinemaId:number, movieId:number,reviewContent:string):Observable<Review[]>{
+    let urlString = this.apiBase+"?action=2&id_movie="+movieId+"&id_cinema="+cinemaId+"&content="+reviewContent;
     return new Observable((observer)=>{
       this.http.get<Review[]>(urlString).subscribe(
         value=>{
           observer.next(value);
         },()=>{
-          observer.error([{id:0,resto_id:0,text_review:"No review"}]);
+          observer.error([{id_cinema:0,id_movie:0,text_review:"No review"}]);
         }
       );
     });
