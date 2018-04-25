@@ -23,7 +23,7 @@ export default class RestaurantHomeComponent implements OnInit, OnDestroy {
     constructor(private CnmaService: CinemaService, private route: ActivatedRoute) {}
 
     ngOnInit() {
-        this.cnma = new Cinema(0,"","",53.348,-6.294,"","", 0);
+        this.cnma = new Cinema(0,"","",53.348,-6.294,"","");
         this.subscriberParams = this.route.params.subscribe(params => {
             let id: number = +params['id'];   // (+) converts string 'id' to a number
             this.CnmaService.getCinemaById(id).subscribe(Fullcin=>{

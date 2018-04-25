@@ -17,15 +17,18 @@
     <div class="col-xs-12 col-md-1"></div>
   </div>
   <div class="row">
-    <div class="col-xs-12 col-md-3 offset-xs-0 offset-md-1">
+    <div class="col-xs-12 col-md-5 offset-xs-0 offset-md-1">
       <osl-restaurant-menu [cnma]="cnma"></osl-restaurant-menu>
     </div>
-    <div class="col-xs-12 col-md-3">
-      <osl-review [resto_id]="cnma.id"></osl-review>
-    </div>
-    <div class="col-xs 12 col-md-4">
+
+    <div class="col-xs 12 col-md-4 offset-md-1">
       <osl-restaurant-location [cnma]="cnma"></osl-restaurant-location>
     </div>
     <div class="col-xs-12 col-md-1"></div>
+  </div>
+  <div class="row">
+    <div class="col-xs-12 col-md-3 offset-md-1">
+      <osl-review [resto_id]="cnma.id"></osl-review>
+    </div>
   </div>
 </div>
