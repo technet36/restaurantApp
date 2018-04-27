@@ -8,7 +8,7 @@ import MovieComponent from "../../page-Movie/movie.component";
     templateUrl: 'cinema-timetable.component.html',
     styleUrls:  ['cinema-timetable.component.css'],
 })
-export default class RestaurantMenuComponent implements OnInit {
+export default class CinemaTimetableComponent implements OnInit {
     @Input() cnma: Cinema;
     show: Showtime;
     imageUrl: string;

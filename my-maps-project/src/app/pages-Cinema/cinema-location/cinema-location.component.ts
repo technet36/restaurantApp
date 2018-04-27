@@ -7,6 +7,6 @@ import {Cinema} from '../../cinema-service/cinema-service';
     templateUrl: 'cinema-location.component.html',
     styleUrls:   ['cinema-location.component.css']
 })
-export default class RestaurantLocationComponent {
+export default class CinemaLocationComponent {
       @Input() cnma: Cinema;
 }

@@ -10,7 +10,7 @@ import {ReviewService} from "../../review-service/review-service.service";
     styleUrls:  ['cinema-home.component.css'],
     providers: [CinemaService]
 })
-export default class RestaurantHomeComponent implements OnInit {
+export default class CinemaHomeComponent implements OnInit {
 
     cnma: Cinema;
     show: Showtime;
