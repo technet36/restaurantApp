@@ -21,7 +21,7 @@ export default class RestaurantMenuComponent implements OnInit {
 
   ngOnInit() {
     //console.log(this.cnma);
-    this.show = new Showtime(0, 0, 0, "", null, "", "", null);
+    this.show = new Showtime("", 0, 0, "", null, "", "", null);
     this.subscriberParams = this.route.params.subscribe(params => {
       let id: number = +params['id'];   // (+) converts string 'id' to a number
       this.CnmaService.getShowtimeById(id).subscribe(Fullshow => {
@@ -29,8 +29,11 @@ export default class RestaurantMenuComponent implements OnInit {
         console.log(Fullshow);
 
       });
-    });
 
+    });
+    {
+      this.initShowTimeList();
+    }
 
 
   }
