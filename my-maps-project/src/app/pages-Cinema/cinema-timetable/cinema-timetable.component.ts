@@ -5,8 +5,8 @@ import MovieComponent from "../../page-Movie/movie.component";
 @Component({
     moduleId:     module.id,
     selector:    'osl-restaurant-menu',
-    templateUrl: 'restaurant-menu.component.html',
-    styleUrls:  ['restaurant-menu.component.css'],
+    templateUrl: 'cinema-timetable.component.html',
+    styleUrls:  ['cinema-timetable.component.css'],
 })
 export default class RestaurantMenuComponent implements OnInit {
     @Input() cnma: Cinema;

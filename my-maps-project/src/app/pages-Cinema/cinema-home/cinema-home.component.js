@@ -41,14 +41,14 @@ var RestaurantHomeComponent = (function () {
         core_1.Component({
             moduleId: module.id,
             selector: 'osl-restaurant-home',
-            templateUrl: 'restaurant-home.component.html',
-            styleUrls: ['restaurant-home.component.css'],
+            templateUrl: 'cinema-home.component.html',
+            styleUrls: ['cinema-home.component.css'],
             providers: [restaurant_service_1.RestoService]
-        }), 
+        }),
         __metadata('design:paramtypes', [restaurant_service_1.RestoService, router_1.ActivatedRoute])
     ], RestaurantHomeComponent);
     return RestaurantHomeComponent;
 }());
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.default = RestaurantHomeComponent;
-//# sourceMappingURL=restaurant-home.component.js.map
+//# sourceMappingURL=cinema-home.component.js

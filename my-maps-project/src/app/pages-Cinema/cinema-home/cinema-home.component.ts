@@ -6,8 +6,8 @@ import {ReviewService} from "../../review-service/review-service.service";
 @Component({
     moduleId: module.id,
     selector:    'osl-restaurant-home',
-    templateUrl: 'restaurant-home.component.html',
-    styleUrls:  ['restaurant-home.component.css'],
+    templateUrl: 'cinema-home.component.html',
+    styleUrls:  ['cinema-home.component.css'],
     providers: [CinemaService]
 })
 export default class RestaurantHomeComponent implements OnInit {

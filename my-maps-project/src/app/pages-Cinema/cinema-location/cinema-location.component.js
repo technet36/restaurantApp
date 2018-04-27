@@ -10,24 +10,23 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var core_1 = require('@angular/core');
 var restaurant_service_1 = require('../../restaurant-service/restaurant-service');
-var RestaurantDetailComponent = (function () {
-    function RestaurantDetailComponent() {
+var RestaurantLocationComponent = (function () {
+    function RestaurantLocationComponent() {
     }
     __decorate([
-        core_1.Input(), 
+        core_1.Input(),
         __metadata('design:type', restaurant_service_1.Resto)
-    ], RestaurantDetailComponent.prototype, "resto", void 0);
-    RestaurantDetailComponent = __decorate([
+    ], RestaurantLocationComponent.prototype, "resto", void 0);
+    RestaurantLocationComponent = __decorate([
         core_1.Component({
             moduleId: module.id,
-            selector: 'osl-restaurant-detail',
-            templateUrl: 'restaurant-detail.component.html',
-            styleUrls: ['restaurant-detail.component.css'],
-        }), 
+            selector: 'osl-restaurant-location',
+            templateUrl: 'cinema-location.component.html'
+        }),
         __metadata('design:paramtypes', [])
-    ], RestaurantDetailComponent);
-    return RestaurantDetailComponent;
+    ], RestaurantLocationComponent);
+    return RestaurantLocationComponent;
 }());
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.default = RestaurantDetailComponent;
-//# sourceMappingURL=restaurant-detail.component.js.map
+exports.default = RestaurantLocationComponent;
+//# sourceMappingURL=cinema-location.component.js

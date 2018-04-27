@@ -14,20 +14,20 @@ var RestaurantMenuComponent = (function () {
     function RestaurantMenuComponent() {
     }
     __decorate([
-        core_1.Input(), 
+        core_1.Input(),
         __metadata('design:type', restaurant_service_1.Resto)
     ], RestaurantMenuComponent.prototype, "resto", void 0);
     RestaurantMenuComponent = __decorate([
         core_1.Component({
             moduleId: module.id,
             selector: 'osl-restaurant-menu',
-            templateUrl: 'restaurant-menu.component.html',
-            styleUrls: ['restaurant-menu.component.css'],
-        }), 
+            templateUrl: 'cinema-timetable.component.html',
+            styleUrls: ['cinema-timetable.component.css'],
+        }),
         __metadata('design:paramtypes', [])
     ], RestaurantMenuComponent);
     return RestaurantMenuComponent;
 }());
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.default = RestaurantMenuComponent;
-//# sourceMappingURL=restaurant-menu.component.js.map
+//# sourceMappingURL=cinema-timetable.component.jss.map
