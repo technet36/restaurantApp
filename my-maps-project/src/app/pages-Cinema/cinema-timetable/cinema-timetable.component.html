@@ -1,0 +1,33 @@
+<table class="">
+  <tr>
+    <th id="empty_cell"></th>
+    <th [class]="(activeDay==0)?'active_tab':'no_active_tab'" (click)="updateShowtimeDay(0)">Today</th>
+    <th [class]="(activeDay==1)?'active_tab':'no_active_tab'" (click)="updateShowtimeDay(1)">D+1</th>
+    <th [class]="(activeDay==2)?'active_tab':'no_active_tab'" (click)="updateShowtimeDay(2)">D+2</th>
+    <th [class]="(activeDay==3)?'active_tab':'no_active_tab'" (click)="updateShowtimeDay(3)">D+3</th>
+    <th [class]="(activeDay==4)?'active_tab':'no_active_tab'" (click)="updateShowtimeDay(4)">D+4</th>
+    <th [class]="(activeDay==5)?'active_tab':'no_active_tab'" (click)="updateShowtimeDay(5)">D+5</th>
+    <th [class]="(activeDay==6)?'active_tab':'no_active_tab'" (click)="updateShowtimeDay(6)">D+6</th>
+  </tr>
+  <tr><td></td><td class="hours_bar" colspan="7"><span class="hours_slot">00:00</span><span class="hours_slot">02:00</span><span class="hours_slot">04:00</span><span class="hours_slot">06:00</span><span class="hours_slot">08:00</span><span class="hours_slot">10:00</span><span class="hours_slot">12:00</span><span class="hours_slot">14:00</span><span class="hours_slot">16:00</span><span class="hours_slot">18:00</span><span class="hours_slot">20:00</span><span class="hours_slot">22:00</span>
+    </td>
+  </tr>
+  <tr class="tr_body" *ngFor="let oneMovie of currentDayShowtimes">
+    <td>
+      <a href="movie/{{oneMovie.movie_id}}">{{oneMovie.name}}</a>
+    </td>
+    <td colspan="7" >
+      <span class="time" *ngFor="let oneTime of oneMovie.showtimes" [style.left]="oneTime.offset">
+        <span class="tooltiptext">
+          <span class="tooltip_row">Start at: {{oneTime.start_at}}</span><br/>
+          <span class="tooltip_row">{{oneTime.auditorium}} {{oneTime.is_3d?"(3D)":""}}</span>
+        </span>
+      </span>
+    </td>
+  </tr>
+  <tr *ngIf="currentDayShowtimes==0">
+    <td colspan="8">
+      No showtime for this day
+    </td>
+  </tr>
+</table>

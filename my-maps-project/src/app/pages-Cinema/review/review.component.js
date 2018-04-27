@@ -31,17 +31,17 @@ var ReviewComponent = (function () {
         }
     };
     __decorate([
-        core_1.Input(), 
+        core_1.Input(),
         __metadata('design:type', Number)
     ], ReviewComponent.prototype, "id_resto", void 0);
     ReviewComponent = __decorate([
         core_1.Component({
             moduleId: module.id,
-            selector: 'osl-review',
+            selector: 'cinema-review',
             templateUrl: 'review.component.html',
             styleUrls: ['review.component.css'],
             providers: [logger_service_1.LoggerService]
-        }), 
+        }),
         __metadata('design:paramtypes', [logger_service_1.LoggerService])
     ], ReviewComponent);
     return ReviewComponent;

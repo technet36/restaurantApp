@@ -1,75 +1,14 @@
-.titles{
-  padding: 40px 15px 15px;
-}
-.movie-presentation{
-  margin-top: 25px;
-}
-.my-image{
-  border: 4px solid black;
-  border-radius: 19px;
-}
-.page{
-  background-color:#556B2F;
-  border-right:2px solid dimgray;
-}
-div{
-}
-.title{
-  margin: auto auto auto 5px;
-}
-.titre{
-  float:left;
-  margin-right: 10px;
-}
-.tag-badge{
-  margin-right: 2px;
-}
-.all-review{
+.movie-showtimes{
   border: solid dimgray 2px;
   height: 250px;
-  background-color: rgba(225, 225, 225, 0.6);
-}
-.review-submit{
-}
-.review-content{
-  height: 168px;
-  overflow-y: auto;
-}
-.each-review{
-  border-bottom: solid 1px dimgray;
-  padding: 4px;
-}
-.no-review{
-  text-align: center;
-  color: dimgray;
-}
-.review-header{
-  border-bottom: 2px solid dimgray;
-  margin: auto;
-  text-align: center;
-  padding: 5px;
+  overflow: auto;
 }
 span{
   float:left;
   padding:12px;
 }
-.titre{
-  font-size:14px;
-  background-color:#CC6666;
-  color:#663333;
-  padding:4px;
-}
-.movie-agm-map {
-  height: 300px;
-}
-.all-detail{
-  max-width: 600px;
-}
-
-.movie-showtimes{
-  border: solid dimgray 2px;
-  height: 250px;
-  overflow: auto;
+table{
+  width: 100%;
 }
 table, th, td, tr{
   border: 1px solid black;

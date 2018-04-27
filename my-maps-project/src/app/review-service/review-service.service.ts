@@ -33,7 +33,7 @@ export class ReviewService {
   }
 
   public getReviewsByCinema(cinemaId:number):Observable<Review[]>{
-    let urlString = this.apiBase+"?action=1&id_movie="+cinemaId;
+    let urlString = this.apiBase+"?action=1&id_cinema="+cinemaId;
     return new Observable((observer)=>{
       this.http.get<Review[]>(urlString).subscribe(
         value=>{

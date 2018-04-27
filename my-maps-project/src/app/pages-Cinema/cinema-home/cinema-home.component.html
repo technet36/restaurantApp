@@ -7,28 +7,26 @@
         </div>
         <div class="col-xs-10 title">
           <h1>{{cnma.name}}</h1>
-          <h4 ><span *ngFor="let unTag of cnma.tag" class="badge badge-secondary tag-badge" >{{unTag}}</span> </h4>
+          <h6 > Address: {{cnma.address_text}}</h6>
+          <h6 > Tel: {{cnma.telephone}}</h6>
+          <a href="{{cnma.website}}" target="_blank"> Website</a>
         </div>
       </div>
     </div>
-    <div class="col-xs-12 cols-md-">
-      <osl-restaurant-detail [cnma]="cnma"></osl-restaurant-detail>
+    <div class="col-xs-12 cols-md-5" style="width: 575px;">
+      <cinema-location [cnma]="cnma"></cinema-location>
     </div>
     <div class="col-xs-12 col-md-1"></div>
   </div>
   <div class="row">
-    <div class="col-xs-12 col-md-5 offset-xs-0 offset-md-1">
-      <osl-restaurant-menu [cnma]="cnma"></osl-restaurant-menu>
+    <div class="col-xs-12 col-md-7 offset-xs-0 offset-md-1">
+      <cinema-timetable [cnma]="cnma"></cinema-timetable>
     </div>
-
-    <div class="col-xs 12 col-md-4 offset-md-1">
-      <osl-restaurant-location [cnma]="cnma"></osl-restaurant-location>
+    <div class="col-xs-12 col-md-3">
+      <cinema-review [cnmaId]="cnma.id"></cinema-review>
     </div>
     <div class="col-xs-12 col-md-1"></div>
   </div>
   <div class="row">
-    <div class="col-xs-12 col-md-3 offset-md-1">
-      <osl-review [resto_id]="cnma.id"></osl-review>
-    </div>
   </div>
 </div>
