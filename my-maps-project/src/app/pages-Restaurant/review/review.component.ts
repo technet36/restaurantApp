@@ -10,15 +10,13 @@ import {Review, ReviewService} from "../../review-service/review-service.service
 
 export default class ReviewComponent implements OnInit{
 
-    @Input() set resto_id(leResto:number){
-      console.log("callback leResto");
-      console.log(leResto);
-      this.restoId = leResto;
-      this.reviewService.getReviewsByCinema(leResto).subscribe(data=>{
-        this.list_Review = data;
-      });
+    @Input() set cnmaId(cnma_id:number){
+      if (cnma_id!=0){
+        this.cinemaId = cnma_id;
+        this.getReview();
+      }
     }
-    restoId:number;
+    cinemaId:number;
     reviewText : string; // review input in the HTML
     list_Review: Array<Review> ;
     number_reviews: number = 0;
@@ -31,19 +29,29 @@ export default class ReviewComponent implements OnInit{
     ngOnInit() {
     };
 
-    getReview() : void {
-      if(this.reviewText !== ""){
-        console.log(this.restoId);
-        let newReview:Review = {id_movie:0,id_cinema:this.restoId,text_review:this.reviewText};
-        this.list_Review.push( newReview );
-        this.reviewService.pushReview(newReview.id_cinema,0,newReview.text_review).subscribe((data)=>{
+
+  getReview() {
+    this.reviewService.getReviewsByCinema(this.cinemaId).subscribe((data)=>{
+      this.list_Review = data;
+    },error=>{
+      console.log("Fail to get the reviews "+this.cinemaId);
+    });
+  }
+  pushReview() : void {
+    if(this.reviewText !== ""){
+      let newReview:Review = {id_movie:0,id_cinema:this.cinemaId,text_review:this.reviewText};
+      this.list_Review.push( newReview );
+      this.reviewService.pushReview(newReview.id_cinema,0,newReview.text_review).subscribe((data)=>{
+        console.log("success");
+        },error=>{
+        console.log("fail ot push the review");
         }
       );
-        //init empty the input
-        this.reviewText = null;
-        //Ecriture dans le json
-      }
+      //init empty the input
+      this.reviewText = null;
+      //Ecriture dans le json
     }
+  }
 
 
 }

@@ -59,16 +59,17 @@ span{
   color:#663333;
   padding:4px;
 }
-.movie-showtimes{
-  border: solid dimgray 2px;
-  height: 250px;
-  overflow: auto;
-}
 .movie-agm-map {
   height: 300px;
 }
 .all-detail{
   max-width: 600px;
+}
+
+.movie-showtimes{
+  border: solid dimgray 2px;
+  height: 250px;
+  overflow: auto;
 }
 table, th, td, tr{
   border: 1px solid black;

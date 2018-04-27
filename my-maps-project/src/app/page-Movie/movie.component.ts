@@ -118,4 +118,5 @@ export default class MovieComponent implements OnInit {
     this.activeDay = day;
     this.currentDayShowtimes = this.timetableArray[day];
   }
+
 }

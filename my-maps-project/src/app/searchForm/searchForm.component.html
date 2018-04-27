@@ -7,7 +7,7 @@
           <agm-marker *ngFor="let oneCinema of allCinemas"  [latitude]="oneCinema.lat" [longitude]="oneCinema.lon">
             <agm-info-window>
               <div>{{oneCinema.name}}</div>
-              <a [routerLink]="['/restaurant', oneCinema.id]">+details</a>
+              <a [routerLink]="['/cinema', oneCinema.id]">+details</a>
             </agm-info-window>
           </agm-marker>
         </agm-map>

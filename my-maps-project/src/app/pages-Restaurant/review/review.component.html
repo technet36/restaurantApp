@@ -1,5 +1,5 @@
 <div class="all-review">
-  <h4 class="bg-secondary review-header">Reviews for this cinerma</h4>
+  <h4 class="bg-secondary review-header">Reviews for this cinema</h4>
   <div class="review-content">
     <div *ngIf="list_Review.length==0" class="no-review ">
       <span>No review yet.<br/>Be the first.</span>
@@ -10,7 +10,7 @@
   </div>
   <div class="form-inline review-submit">
     <input class="form-control col" type="text" [(ngModel)]="reviewText" placeholder="Type your review"/>
-    <button class="btn btn-primary col" (click)="getReview()">Submit</button>
+    <button class="btn btn-primary col" (click)="pushReview()">Submit</button>
   </div>
 </div>
 

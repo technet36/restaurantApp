@@ -12,7 +12,7 @@ export class Cinema {
     public lat: number,
     public lon: number,
     public address_text: string,
-    public booking_type: string
+    public telephone: string
   ){}
 }
 
@@ -71,7 +71,14 @@ export class CinemaService {
         response=>{
           let cinemasArray = [];
           response["cinemas"].forEach(function (oneCinema) {
-            cinemasArray.push(new Cinema(oneCinema["id"],oneCinema["name"],oneCinema["website"],oneCinema["location"]["lat"],oneCinema["location"]["lon"],oneCinema["location"]["address"]["display_text"],oneCinema["booking_type"],))
+            cinemasArray.push(new Cinema(
+              oneCinema["id"],
+              oneCinema["name"],
+              oneCinema["website"],
+              oneCinema["location"]["lat"],
+              oneCinema["location"]["lon"],
+              oneCinema["location"]["address"]["display_text"],
+              oneCinema["telephone"],))
           });
           observer.next(cinemasArray);
           observer.complete();
@@ -89,7 +96,7 @@ export class CinemaService {
         response=>{
           let cinemasArray = [];
           response["cinemas"].forEach(function (oneCinema) {
-            cinemasArray.push(new Cinema(oneCinema["id"],oneCinema["name"],oneCinema["website"],oneCinema["location"]["lat"],oneCinema["location"]["lon"],oneCinema["location"]["address"]["display_text"],oneCinema["booking_type"],))
+            cinemasArray.push(new Cinema(oneCinema["id"],oneCinema["name"],oneCinema["website"],oneCinema["location"]["lat"],oneCinema["location"]["lon"],oneCinema["location"]["address"]["display_text"],oneCinema["telephone"],))
           });
           observer.next(cinemasArray);
           observer.complete();
@@ -108,7 +115,7 @@ export class CinemaService {
           let showtimesArray = [];
           response["showtimes"].forEach(function (oneShowtime) {
             showtimesArray.push(new Showtime(oneShowtime["id"],oneShowtime["cinema_id"],oneShowtime["movie_id"],
-                oneShowtime["start_at"],oneShowtime["language"],oneShowtime["auditorium"],oneShowtime["booking_type"],oneShowtime["is_3d"]))
+                oneShowtime["start_at"],oneShowtime["language"],oneShowtime["auditorium"],oneShowtime["telephone"],oneShowtime["is_3d"]))
           });
           observer.next(showtimesArray);
           observer.complete();
@@ -127,7 +134,7 @@ export class CinemaService {
           let showtimesArray = [];
           response["showtimes"].forEach(function (oneShowtime) {
             showtimesArray.push(new Showtime(oneShowtime["id"],oneShowtime["cinema_id"],oneShowtime["movie_id"],
-                oneShowtime["start_at"],oneShowtime["language"],oneShowtime["auditorium"],oneShowtime["booking_type"],oneShowtime["is_3d"]))
+                oneShowtime["start_at"],oneShowtime["language"],oneShowtime["auditorium"],oneShowtime["telephone"],oneShowtime["is_3d"]))
           });
           observer.next(showtimesArray);
           observer.complete();
@@ -244,7 +251,7 @@ export class CinemaService {
             Partcin["cinema"]["location"]["lat"],
             Partcin["cinema"]["location"]["lon"],
             Partcin["cinema"]["location"]["address"]["display_text"],
-            Partcin["cinema"]["booking_type"]);
+            Partcin["cinema"]["telephone"]);
           monObserver.next(Fullcin);
           monObserver.complete();
         },()=>{
@@ -260,7 +267,7 @@ export class CinemaService {
                     let showtimesArray = [];
                     response["showtimes"].forEach(function (oneShowtime) {
                         showtimesArray.push(new Showtime(oneShowtime["id"],oneShowtime["cinema_id"],oneShowtime["movie_id"],
-                            oneShowtime["start_at"],oneShowtime["language"],oneShowtime["auditorium"],oneShowtime["booking_type"],oneShowtime["is_3d"]))
+                            oneShowtime["start_at"],oneShowtime["language"],oneShowtime["auditorium"],oneShowtime["telephone"],oneShowtime["is_3d"]))
                       });
                     observer.next(showtimesArray);
                     observer.complete();
