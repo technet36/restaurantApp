@@ -3,7 +3,7 @@ import {Cinema} from '../../cinema-service/cinema-service';
 
 @Component({
     moduleId:     module.id,
-    selector:    'osl-restaurant-location',
+    selector:    'cinema-location',
     templateUrl: 'cinema-location.component.html',
     styleUrls:   ['cinema-location.component.css']
 })

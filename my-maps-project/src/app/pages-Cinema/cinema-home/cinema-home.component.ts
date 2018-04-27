@@ -5,7 +5,7 @@ import {ReviewService} from "../../review-service/review-service.service";
 
 @Component({
     moduleId: module.id,
-    selector:    'osl-restaurant-home',
+    selector:    'cinema-home',
     templateUrl: 'cinema-home.component.html',
     styleUrls:  ['cinema-home.component.css'],
     providers: [CinemaService]

@@ -3,7 +3,7 @@ import {Review, ReviewService} from "../../review-service/review-service.service
 
 @Component({
     moduleId:     module.id,
-    selector:    'osl-review',
+    selector:    'cinema-review',
     templateUrl: 'review.component.html',
     styleUrls:  ['review.component.css']
 })

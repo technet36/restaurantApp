@@ -20,7 +20,7 @@ var RestaurantLocationComponent = (function () {
     RestaurantLocationComponent = __decorate([
         core_1.Component({
             moduleId: module.id,
-            selector: 'osl-restaurant-location',
+            selector: 'cinema-location',
             templateUrl: 'cinema-location.component.html'
         }),
         __metadata('design:paramtypes', [])

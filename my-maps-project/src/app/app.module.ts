@@ -11,9 +11,9 @@ import ApplicationComponent from "./application/application.component";
 import FooterComponent from "./footer/footer.component";
 import AboutComponent from "./about/about.component";
 import MenuBarComponent from "./menubar/menubar.component";
-import RestaurantHomeComponent from "./pages-Cinema/cinema-home/cinema-home.component";
+import CinemaHomeComponent from "./pages-Cinema/cinema-home/cinema-home.component";
 import CinemaLocationComponent from "./pages-Cinema/cinema-location/cinema-location.component";
-import RestaurantMenuComponent from "./pages-Cinema/cinema-timetable/cinema-timetable.component";
+import CinemaTimetableComponent from "./pages-Cinema/cinema-timetable/cinema-timetable.component";
 import ScoreComponent from "./score/score.component";
 import PageNotFoundComponent from "./pagenotfound/pagenotfound.component";
 import {LoggerService} from "./logger-service/logger-service";
@@ -33,7 +33,7 @@ import MovieComponent from "./page-Movie/movie.component";
     }),
     RouterModule.forRoot([
       { path: '', component: SearchFormComponent },
-      { path: 'cinema/:id', component: RestaurantHomeComponent, data: {displayPrice: true}  },
+      { path: 'cinema/:id', component: CinemaHomeComponent, data: {displayPrice: true}  },
       { path: 'movie/:id', component: MovieComponent, data: {displayPrice: true}  },
       { path: '**', component: PageNotFoundComponent },
       { path: 'donate', component: AboutComponent  }
@@ -46,9 +46,9 @@ import MovieComponent from "./page-Movie/movie.component";
     FooterComponent,
     AboutComponent,
     MenuBarComponent,
-    RestaurantHomeComponent,
+    CinemaHomeComponent,
     CinemaLocationComponent,
-    RestaurantMenuComponent,
+    CinemaTimetableComponent,
     ScoreComponent,
     PageNotFoundComponent,
     ReviewComponent,

@@ -20,7 +20,7 @@ var RestaurantMenuComponent = (function () {
     RestaurantMenuComponent = __decorate([
         core_1.Component({
             moduleId: module.id,
-            selector: 'osl-restaurant-menu',
+            selector: 'cinema-timetable',
             templateUrl: 'cinema-timetable.component.html',
             styleUrls: ['cinema-timetable.component.css'],
         }),

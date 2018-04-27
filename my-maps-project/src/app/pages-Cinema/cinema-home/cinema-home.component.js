@@ -40,7 +40,7 @@ var RestaurantHomeComponent = (function () {
     RestaurantHomeComponent = __decorate([
         core_1.Component({
             moduleId: module.id,
-            selector: 'osl-restaurant-home',
+            selector: 'cinema-home',
             templateUrl: 'cinema-home.component.html',
             styleUrls: ['cinema-home.component.css'],
             providers: [restaurant_service_1.RestoService]

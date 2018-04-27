@@ -4,7 +4,7 @@ import {ActivatedRoute} from "@angular/router";
 import MovieComponent from "../../page-Movie/movie.component";
 @Component({
     moduleId:     module.id,
-    selector:    'osl-restaurant-menu',
+    selector:    'cinema-timetable',
     templateUrl: 'cinema-timetable.component.html',
     styleUrls:  ['cinema-timetable.component.css'],
 })
